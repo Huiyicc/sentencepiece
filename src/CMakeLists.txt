@@ -184,6 +184,10 @@ find_package(Threads REQUIRED)
 
 list(APPEND SPM_LIBS ${PROTOBUF_LITE_LIBRARY} Threads::Threads)
 
+if (CMAKE_SYSTEM_NAME STREQUAL "Android")
+  set(SPM_LIBS ${SPM_LIBS} log )
+endif ()
+
 if (SPM_ENABLE_NFKC_COMPILE)
   find_package(ICU 4.4 COMPONENTS i18n data uc REQUIRED)
   include_directories(${ICU_INCLUDE_DIRS})
